@@ -5,6 +5,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Constructor;
 import java.time.LocalDate;
@@ -15,6 +18,7 @@ import java.util.Set;
  */
 @Configuration
 @ComponentScan(basePackages = "com.example")
+@EnableScheduling
 public class Main {
     @SneakyThrows
     public static void main(String[] args) {
@@ -22,6 +26,9 @@ public class Main {
 
 
         ConfigurableApplicationContext context = SpringApplication.run(Main.class);
+
+
+
         PersonValidator personValidator = context.getBean(PersonValidator.class);
         personValidator.validate(person);
     }
